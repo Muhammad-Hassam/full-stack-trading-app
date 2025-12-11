@@ -29,18 +29,21 @@ OtpSchema.pre("save", async function (next) {
     await sendVerificationEmail(this.email, this.otp, this.otp_type);
     this.otp = await bcrypt.hash(this.otp, salt);
   }
-  next();
+  // next();
 });
 
-OtpSchema.methods.compareOtp = async function (enteredOtp) {
+OtpSchema.methods.compareOTP = async function (enteredOtp) {
   return await bcrypt.compare(enteredOtp, this.otp);
 };
 
 async function sendVerificationEmail(email, otp, otp_type) {
   try {
-    const mailResponse = await mailSender(email, otp, otp_type);
+    await mailSender(email, otp, otp_type);
   } catch (error) {
     console.log(error);
     throw error;
   }
 }
+
+const Otp = mongoose.model("Otp", OtpSchema);
+export default Otp;

@@ -1,10 +1,10 @@
-import User from "../../models/User";
+import User from "../../models/User.js";
 import { StatusCodes } from "http-status-codes";
 import {
   BadRequestError,
   NotFoundError,
   UnauthenticatedError
-} from "../../errors";
+} from "../../errors/index.js";
 import jwt from "jsonwebtoken";
 
 const register = async (req, res) => {

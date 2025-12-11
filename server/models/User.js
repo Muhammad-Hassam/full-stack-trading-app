@@ -6,7 +6,7 @@ import {
   BadRequestError,
   NotFoundError,
   UnauthenticatedError
-} from "../errors";
+} from "../errors/index.js";
 
 const UserSchema = new mongoose.Schema(
   {

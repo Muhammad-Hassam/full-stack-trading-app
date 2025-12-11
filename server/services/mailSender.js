@@ -39,7 +39,7 @@ export const mailSender = async (email, otp, otp_type) => {
   }
 };
 
-export const generateOTP = () => {
+export const generateOTP = async () => {
   const otp = otpGenerator.generate(6, {
     upperCaseAlphabets: false,
     specialChars: false,

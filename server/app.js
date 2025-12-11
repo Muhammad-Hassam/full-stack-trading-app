@@ -5,11 +5,10 @@ import { createServer } from "http";
 import SwaggerUI from "swagger-ui-express";
 import YAML from "yamljs";
 import cors from "cors";
-import connectDB from "./db/connect.js";
-import authRouter from "./routes/authRoutes.js";
+import connectDB from "./config/connect.js";
+import authRouter from "./routes/auth.js";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-import e from "express";
 import notFound from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
 
@@ -23,10 +22,10 @@ app.use(express.json());
 const httpServer = createServer(app);
 
 app.get("/", (req, res) => {
-  res.send("<h1>Trading API</h1><a></a href='/api-docs'>Documentation</a>");
+  res.send("<h1>Trading API</h1><a href='/api-docs'>Documentation</a>");
 });
 
-const swaggerDocument = YAML.load(_dirname + "./docs/swagger.yaml");
+const swaggerDocument = YAML.load(_dirname + "/docs/swagger.yaml");
 app.use("/api-docs", SwaggerUI.serve, SwaggerUI.setup(swaggerDocument));
 
 app.use("/auth", authRouter);
