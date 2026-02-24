@@ -3,7 +3,7 @@ info:
   title: TradeVault API
   description: |
     A comprehensive trading platform API that provides:
-    
+
     ## Features
     - **User Authentication**: Secure login/register with JWT tokens
     - **OTP Verification**: Email-based OTP system for account security
@@ -11,17 +11,17 @@ info:
     - **Stock Management**: Buy/sell stocks with portfolio tracking
     - **Biometric Authentication**: Advanced security with biometric keys
     - **OAuth Integration**: Google and Apple sign-in support
-    
+
     ## Authentication
     - **App Token**: Used for main application endpoints (JWT_SECRET)
     - **Socket Token**: Used for WebSocket connections (SOCKET_TOKEN_SECRET)
-    
+
     ## Rate Limiting
     - OTP requests: 1 per minute per email
     - Login attempts: 3 attempts before 30-minute lockout
     - PIN attempts: 3 attempts before 30-minute lockout
-    
-  version: '1.0.0'
+
+  version: "1.0.0"
   contact:
     name: TradeVault Support
     email: support@tradevault.com
@@ -44,7 +44,7 @@ paths:
   # ========================================
   # AUTHENTICATION ENDPOINTS (Non-Protected)
   # ========================================
-  
+
   /auth/check-email:
     post:
       tags:
@@ -59,30 +59,30 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CheckEmailRequest'
+              $ref: "#/components/schemas/CheckEmailRequest"
             example:
               email: "user@example.com"
       responses:
-        '200':
+        "200":
           description: Email check completed successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CheckEmailResponse'
+                $ref: "#/components/schemas/CheckEmailResponse"
               example:
                 isExist: false
-        '400':
+        "400":
           description: Bad request - missing email
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /auth/register:
     post:
@@ -98,30 +98,30 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RegisterRequest'
+              $ref: "#/components/schemas/RegisterRequest"
             example:
               email: "user@example.com"
               password: "SecurePass123!"
               register_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
       responses:
-        '201':
+        "201":
           description: User registered successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RegisterResponse'
-        '400':
+                $ref: "#/components/schemas/RegisterResponse"
+        "400":
           description: Bad request - invalid data or user already exists
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /auth/login:
     post:
@@ -137,29 +137,29 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LoginRequest'
+              $ref: "#/components/schemas/LoginRequest"
             example:
               email: "user@example.com"
               password: "SecurePass123!"
       responses:
-        '200':
+        "200":
           description: Login successful
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LoginResponse'
-        '401':
+                $ref: "#/components/schemas/LoginResponse"
+        "401":
           description: Invalid credentials or account locked
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /auth/oauth:
     post:
@@ -175,29 +175,29 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/OAuthRequest'
+              $ref: "#/components/schemas/OAuthRequest"
             example:
               provider: "google"
               id_token: "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..."
       responses:
-        '200':
+        "200":
           description: OAuth authentication successful
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LoginResponse'
-        '400':
+                $ref: "#/components/schemas/LoginResponse"
+        "400":
           description: Bad request - invalid provider or token
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '401':
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
           description: Invalid OAuth token
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /auth/send-otp:
     post:
@@ -216,23 +216,23 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SendOtpRequest'
+              $ref: "#/components/schemas/SendOtpRequest"
             example:
               email: "user@example.com"
               otp_type: "email"
       responses:
-        '200':
+        "200":
           description: OTP sent successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SendOtpResponse'
-        '400':
+                $ref: "#/components/schemas/SendOtpResponse"
+        "400":
           description: Bad request - invalid email or OTP type
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /auth/verify-otp:
     post:
@@ -248,25 +248,25 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/VerifyOtpRequest'
+              $ref: "#/components/schemas/VerifyOtpRequest"
             example:
               email: "user@example.com"
               otp: "123456"
               otp_type: "email"
               data: null
       responses:
-        '200':
+        "200":
           description: OTP verified successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VerifyOtpResponse'
-        '400':
+                $ref: "#/components/schemas/VerifyOtpResponse"
+        "400":
           description: Bad request - invalid OTP or expired
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /auth/refresh-token:
     post:
@@ -282,34 +282,34 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RefreshTokenRequest'
+              $ref: "#/components/schemas/RefreshTokenRequest"
             example:
               type: "app"
               refresh_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
       responses:
-        '200':
+        "200":
           description: Token refreshed successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RefreshTokenResponse'
-        '400':
+                $ref: "#/components/schemas/RefreshTokenResponse"
+        "400":
           description: Bad request - invalid refresh type
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '401':
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
           description: Invalid or expired refresh token
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   # ========================================
   # USER MANAGEMENT ENDPOINTS (Protected)
   # ========================================
-  
+
   /auth/profile:
     get:
       tags:
@@ -320,24 +320,24 @@ paths:
       security:
         - BearerAuth: []
       responses:
-        '200':
+        "200":
           description: Profile retrieved successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProfileResponse'
-        '401':
+                $ref: "#/components/schemas/ProfileResponse"
+        "401":
           description: Unauthorized - invalid or missing token
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '404':
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
           description: User not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
     put:
       tags:
@@ -352,30 +352,31 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateProfileRequest'
+              $ref: "#/components/schemas/UpdateProfileRequest"
             example:
               name: "John Doe"
               gender: "male"
               date_of_birth: "1990-01-01"
+              phone_number: "1234567890"
       responses:
-        '200':
+        "200":
           description: Profile updated successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateProfileResponse'
-        '400':
+                $ref: "#/components/schemas/UpdateProfileResponse"
+        "400":
           description: Bad request - invalid data
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '401':
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
           description: Unauthorized - invalid or missing token
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /auth/set-pin:
     post:
@@ -391,28 +392,28 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SetPinRequest'
+              $ref: "#/components/schemas/SetPinRequest"
             example:
               login_pin: "1234"
       responses:
-        '200':
+        "200":
           description: PIN set successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SetPinResponse'
-        '400':
+                $ref: "#/components/schemas/SetPinResponse"
+        "400":
           description: Bad request - PIN already exists or invalid format
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '401':
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
           description: Unauthorized - invalid or missing token
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /auth/verify-pin:
     post:
@@ -428,28 +429,28 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/VerifyPinRequest'
+              $ref: "#/components/schemas/VerifyPinRequest"
             example:
               login_pin: "1234"
       responses:
-        '200':
+        "200":
           description: PIN verified successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VerifyPinResponse'
-        '400':
+                $ref: "#/components/schemas/VerifyPinResponse"
+        "400":
           description: Bad request - PIN not set or invalid format
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '401':
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
           description: Unauthorized - invalid PIN or account locked
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /auth/upload-biometric:
     post:
@@ -465,28 +466,28 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UploadBiometricRequest'
+              $ref: "#/components/schemas/UploadBiometricRequest"
             example:
               public_key: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA..."
       responses:
-        '200':
+        "200":
           description: Biometric key uploaded successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UploadBiometricResponse'
-        '400':
+                $ref: "#/components/schemas/UploadBiometricResponse"
+        "400":
           description: Bad request - missing public key
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '401':
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
           description: Unauthorized - invalid or missing token
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /auth/verify-biometric:
     post:
@@ -502,28 +503,28 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/VerifyBiometricRequest'
+              $ref: "#/components/schemas/VerifyBiometricRequest"
             example:
               signature: "base64_encoded_signature_here"
       responses:
-        '200':
+        "200":
           description: Biometric verification successful
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VerifyBiometricResponse'
-        '400':
+                $ref: "#/components/schemas/VerifyBiometricResponse"
+        "400":
           description: Bad request - missing signature or no biometric key
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '401':
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
           description: Unauthorized - invalid signature
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /auth/logout:
     post:
@@ -535,23 +536,23 @@ paths:
       security:
         - BearerAuth: []
       responses:
-        '200':
+        "200":
           description: Logout successful
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LogoutResponse'
-        '401':
+                $ref: "#/components/schemas/LogoutResponse"
+        "401":
           description: Unauthorized - invalid or missing token
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   # ========================================
   # STOCK MANAGEMENT ENDPOINTS (Protected)
   # ========================================
-  
+
   /stocks:
     get:
       tags:
@@ -562,18 +563,18 @@ paths:
       security:
         - BearerAuth: []
       responses:
-        '200':
+        "200":
           description: Stocks retrieved successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetStocksResponse'
-        '401':
+                $ref: "#/components/schemas/GetStocksResponse"
+        "401":
           description: Unauthorized - invalid socket token
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /stocks/stock:
     get:
@@ -593,24 +594,24 @@ paths:
             type: string
           example: "AAPL"
       responses:
-        '200':
+        "200":
           description: Stock retrieved successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetStockResponse'
-        '400':
+                $ref: "#/components/schemas/GetStockResponse"
+        "400":
           description: Bad request - missing stock symbol
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '404':
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
           description: Stock not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /stocks/register:
     post:
@@ -626,7 +627,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RegisterStockRequest'
+              $ref: "#/components/schemas/RegisterStockRequest"
             example:
               symbol: "TSLA"
               companyName: "Tesla, Inc."
@@ -634,23 +635,23 @@ paths:
               lastDayTradedPrice: "250.00"
               currentPrice: 255.50
       responses:
-        '201':
+        "201":
           description: Stock registered successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RegisterStockResponse'
-        '400':
+                $ref: "#/components/schemas/RegisterStockResponse"
+        "400":
           description: Bad request - invalid data or stock already exists
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   # ========================================
   # TRADING ENDPOINTS (Protected)
   # ========================================
-  
+
   /stocks/buy:
     post:
       tags:
@@ -665,23 +666,23 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BuyStockRequest'
+              $ref: "#/components/schemas/BuyStockRequest"
             example:
               stock_id: "507f1f77bcf86cd799439011"
               quantity: 10
       responses:
-        '201':
+        "201":
           description: Stock purchased successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BuyStockResponse'
-        '400':
+                $ref: "#/components/schemas/BuyStockResponse"
+        "400":
           description: Bad request - insufficient balance or invalid data
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /stocks/sell:
     post:
@@ -697,23 +698,23 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SellStockRequest'
+              $ref: "#/components/schemas/SellStockRequest"
             example:
               holdingId: "507f1f77bcf86cd799439012"
               quantity: 5
       responses:
-        '200':
+        "200":
           description: Stock sold successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SellStockResponse'
-        '400':
+                $ref: "#/components/schemas/SellStockResponse"
+        "400":
           description: Bad request - insufficient quantity or invalid data
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /stocks/holding:
     get:
@@ -725,18 +726,18 @@ paths:
       security:
         - BearerAuth: []
       responses:
-        '200':
+        "200":
           description: Holdings retrieved successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetHoldingsResponse'
-        '401':
+                $ref: "#/components/schemas/GetHoldingsResponse"
+        "401":
           description: Unauthorized - invalid socket token
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
   /stocks/order:
     get:
@@ -748,18 +749,18 @@ paths:
       security:
         - BearerAuth: []
       responses:
-        '200':
+        "200":
           description: Orders retrieved successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetOrdersResponse'
-        '401':
+                $ref: "#/components/schemas/GetOrdersResponse"
+        "401":
           description: Unauthorized - invalid socket token
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 
 components:
   securitySchemes:
@@ -782,7 +783,7 @@ components:
     # ========================================
     # AUTHENTICATION SCHEMAS
     # ========================================
-    
+
     CheckEmailRequest:
       type: object
       required:
@@ -1018,7 +1019,7 @@ components:
     # ========================================
     # USER MANAGEMENT SCHEMAS
     # ========================================
-    
+
     ProfileResponse:
       type: object
       properties:
@@ -1076,7 +1077,7 @@ components:
           description: Operation success status
           example: true
         data:
-          $ref: '#/components/schemas/User'
+          $ref: "#/components/schemas/User"
 
     SetPinRequest:
       type: object
@@ -1085,7 +1086,7 @@ components:
       properties:
         login_pin:
           type: string
-          pattern: '^[0-9]{4}$'
+          pattern: "^[0-9]{4}$"
           description: 4-digit login PIN
           example: "1234"
 
@@ -1115,7 +1116,7 @@ components:
       properties:
         login_pin:
           type: string
-          pattern: '^[0-9]{4}$'
+          pattern: "^[0-9]{4}$"
           description: 4-digit login PIN
           example: "1234"
 
@@ -1196,7 +1197,7 @@ components:
     # ========================================
     # STOCK MANAGEMENT SCHEMAS
     # ========================================
-    
+
     RegisterStockRequest:
       type: object
       required:
@@ -1236,7 +1237,7 @@ components:
           description: Success message
           example: "Stock added successfully!"
         data:
-          $ref: '#/components/schemas/Stock'
+          $ref: "#/components/schemas/Stock"
 
     GetStocksResponse:
       type: object
@@ -1248,7 +1249,7 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/Stock'
+            $ref: "#/components/schemas/Stock"
 
     GetStockResponse:
       type: object
@@ -1258,12 +1259,12 @@ components:
           description: Success message
           example: "Stock retrieved successfully!"
         data:
-          $ref: '#/components/schemas/Stock'
+          $ref: "#/components/schemas/Stock"
 
     # ========================================
     # TRADING SCHEMAS
     # ========================================
-    
+
     BuyStockRequest:
       type: object
       required:
@@ -1288,7 +1289,7 @@ components:
           description: Success message
           example: "Stock bought successfully!"
         data:
-          $ref: '#/components/schemas/Holding'
+          $ref: "#/components/schemas/Holding"
 
     SellStockRequest:
       type: object
@@ -1335,7 +1336,7 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/Holding'
+            $ref: "#/components/schemas/Holding"
 
     GetOrdersResponse:
       type: object
@@ -1347,12 +1348,12 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/Order'
+            $ref: "#/components/schemas/Order"
 
     # ========================================
     # DATA MODELS
     # ========================================
-    
+
     User:
       type: object
       properties:
@@ -1510,7 +1511,7 @@ components:
     # ========================================
     # ERROR RESPONSES
     # ========================================
-    
+
     ErrorResponse:
       type: object
       properties:

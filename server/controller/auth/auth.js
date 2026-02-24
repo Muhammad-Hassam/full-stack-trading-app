@@ -46,7 +46,7 @@ const login = async (req, res) => {
     throw new BadRequestError("Please provide all values");
   }
 
-  const user = await User.find({ email });
+  const user = await User.findOne({ email });
 
   if (!user) {
     throw new UnauthenticatedError("Invalid Credentials");
@@ -103,7 +103,7 @@ const login = async (req, res) => {
 
 const refreshToken = async (req, res) => {
   const { type, refresh_token } = req.body;
-  if (!type || !["socket", "access"].includes(type) || !refresh_token) {
+  if (!type || !["socket", "app"].includes(type) || !refresh_token) {
     throw new BadRequestError("Invalid token type");
   }
 
@@ -114,7 +114,7 @@ const refreshToken = async (req, res) => {
         await generateRefreshTokens(
           refresh_token,
           process.env.REFRESH_SOCKET_TOKEN_SECRET,
-          process.env.REFRESH_SOCKET_TOKE_EXPIRY,
+          process.env.REFRESH_SOCKET_TOKEN_EXPIRY,
           process.env.SOCKET_TOKEN_SECRET,
           process.env.SOCKET_TOKEN_EXPIRY
         ));

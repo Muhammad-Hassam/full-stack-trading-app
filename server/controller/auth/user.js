@@ -22,7 +22,7 @@ const updateProfile = async (req, res) => {
 
   const updatedUser = await User.findByIdAndUpdate(userId, updatedFields, {
     new: true,
-    select: "-password  -biometricKey"
+    select: "-password  -biometricKey -login_pin"
   });
   if (!updatedUser) {
     throw new NotFoundError("User not found");
@@ -66,7 +66,7 @@ const setLoginPinFirst = async (req, res) => {
     },
     process.env.SOCKET_TOKEN_SECRET,
     {
-      expiresIn: process.env.REFRESH_TOKEN_EXPIRY
+      expiresIn: process.env.REFRESH_SOCKET_TOKEN_EXPIRY
     }
   );
 
@@ -76,7 +76,7 @@ const setLoginPinFirst = async (req, res) => {
     },
     process.env.REFRESH_SOCKET_TOKEN_SECRET,
     {
-      expiresIn: process.env.REFRESH_SOCKET_TOKEN_SECRET
+      expiresIn: process.env.REFRESH_SOCKET_TOKEN_EXPIRY
     }
   );
 
@@ -138,7 +138,7 @@ const verifyPin = async (req, res) => {
     process.env.REFRESH_SOCKET_TOKEN_SECRET,
     { expiresIn: process.env.REFRESH_SOCKET_TOKEN_EXPIRY }
   );
-  response.status(StatusCodes.OK).json({
+  res.status(StatusCodes.OK).json({
     success: true,
     socket_tokens: {
       socket_access_token: access_token,

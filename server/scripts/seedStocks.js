@@ -23,7 +23,7 @@ const seedStocks = async () => {
     // Read the stocks data from JSON file
     const stocksDataPath = path.join(__dirname, "../data/stocks.json");
     const stocksData = JSON.parse(fs.readFileSync(stocksDataPath, "utf8"));
-    
+
     console.log(`📊 Found ${stocksData.length} stocks to seed`);
 
     // Clear existing stocks (optional - comment out if you want to keep existing data)
@@ -34,17 +34,20 @@ const seedStocks = async () => {
     // Insert new stocks
     console.log("🌱 Seeding stocks into database...");
     const result = await Stock.insertMany(stocksData);
-    
+
     console.log(`✅ Successfully seeded ${result.length} stocks!`);
-    
+
     // Display the seeded stocks
     console.log("\n📋 Seeded Stocks:");
     result.forEach((stock, index) => {
-      console.log(`${index + 1}. ${stock.symbol} - ${stock.companyName} ($${stock.currentPrice})`);
+      console.log(
+        `${index + 1}. ${stock.symbol} - ${stock.companyName} ($${
+          stock.currentPrice
+        })`
+      );
     });
 
     console.log("\n🎉 Database seeding completed successfully!");
-    
   } catch (error) {
     console.error("❌ Error seeding database:", error);
     process.exit(1);

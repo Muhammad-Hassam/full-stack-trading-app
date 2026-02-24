@@ -37,7 +37,7 @@ router
   .put(authenticateUser, updateProfile);
 
 router.post("/set-pin", authenticateUser, setLoginPinFirst);
-router.post("verify-pin", authenticateUser, verifyPin);
+router.post("/verify-pin", authenticateUser, verifyPin);
 router.post("/upload-biometric", authenticateUser, uploadBiometrics);
 router.post("/verify-biometric", authenticateUser, verifyBiometrics);
 router.post("/refresh-token", refreshToken);
