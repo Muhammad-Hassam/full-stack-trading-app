@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navigation from './src/navigation/Navigation';
 import { Provider } from 'react-redux';
 import { persistor, store } from './src/redux/store';
