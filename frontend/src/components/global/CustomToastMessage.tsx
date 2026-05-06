@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Animated, Platform, StyleSheet, Text, View } from 'react-native';
 import { Colors } from '../../constants/Colors';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
-import { Icon } from 'react-native-vector-icons/Icon';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CustomText from './CustomText';
 import { FONTS } from '../../constants/Fonts';
 

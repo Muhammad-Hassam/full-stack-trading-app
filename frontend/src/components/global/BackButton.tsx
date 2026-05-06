@@ -1,0 +1,1 @@
+import { StyleSheet,Touchable  } from "react-native";

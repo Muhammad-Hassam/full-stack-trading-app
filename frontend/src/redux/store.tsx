@@ -8,7 +8,6 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-
 import reduxStorage from './storage';
 import rootReducer from './rootReducer';
 import { configureStore } from '@reduxjs/toolkit';

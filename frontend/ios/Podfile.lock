@@ -56,9 +56,6 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - MMKV (2.3.0):
-    - MMKVCore (~> 2.3.0)
-  - MMKVCore (2.3.0)
   - PromisesObjC (2.4.0)
   - RCTDeprecation (0.84.0)
   - RCTRequired (0.84.0)
@@ -1481,9 +1478,8 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - react-native-mmkv (2.12.2):
+  - react-native-mmkv (3.3.3):
     - hermes-engine
-    - MMKV (>= 1.3.3)
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -2469,8 +2465,6 @@ SPEC REPOS:
     - GTMAppAuth
     - GTMSessionFetcher
     - lottie-ios
-    - MMKV
-    - MMKVCore
     - PromisesObjC
     - SwiftUIIntrospect
 
@@ -2675,8 +2669,6 @@ SPEC CHECKSUMS:
   hermes-engine: eecd839e3d722fb44606b7f4755e37c349116853
   lottie-ios: 8f959969761e9c45d70353667d00af0e5b9cadb3
   lottie-react-native: edbacf12b728254c82b424ee53863ae69dd738a6
-  MMKV: c953dbaac0da392c24b005e763c03ce2638b4ed7
-  MMKVCore: d078dce7d6586a888b2c2ef5343b6242678e3ee8
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   RCTDeprecation: 3280799c14232a56e5a44f92981a8ee33bc69fd9
   RCTRequired: 9854a51b0f65ccf43ea0b744df4d70fce339db32
@@ -2716,7 +2708,7 @@ SPEC CHECKSUMS:
   React-microtasksnativemodule: ddaf25a8d69f694bc880fb6055e34d79f1d50138
   react-native-biometrics: 352e5a794bfffc46a0c86725ea7dc62deb085bdc
   react-native-get-random-values: f807b3ccb892fe265aeba89ef37f96dfdfc587eb
-  react-native-mmkv: 71432f4aec125fc2b8c607ed1d473f5bc2a6f159
+  react-native-mmkv: 5b164b60a939fb97c3a78a779469d0d24ab7a131
   react-native-netinfo: 13886ae458c33dbb849592dcd75e1795e3d70842
   react-native-orientation-locker: 5819fd23ca89cbac0d736fb4314745f62716d517
   react-native-pager-view: 8fe6fcac550c2c5083e23706f11452e27ca5506f

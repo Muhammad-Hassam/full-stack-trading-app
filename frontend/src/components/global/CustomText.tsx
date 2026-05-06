@@ -1,8 +1,8 @@
 import React from 'react';
-import { Text, StyleSheet, TextStyle, TextProps } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+import { Text, StyleSheet, TextStyle } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { FONTS } from '../../constants/Fonts';
+import { Colors } from '../../constants/Colors';
 
 interface Props {
   variant?:
@@ -33,7 +33,6 @@ const CustomText: React.FC<Props> = ({
   numberOfLines,
   onLayout,
 }) => {
-  const { colors } = useTheme();
   let computedFontSize: number;
 
   switch (variant) {
@@ -91,7 +90,7 @@ const CustomText: React.FC<Props> = ({
     <Text
       style={[
         styles.text,
-        { color: colors.text, fontSize: computedFontSize },
+        { color: Colors.text, fontSize: computedFontSize },
         fontFamilyStyle,
         style,
       ]}
