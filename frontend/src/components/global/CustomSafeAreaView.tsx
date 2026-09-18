@@ -1,4 +1,4 @@
-import { View, Text, ViewStyle, StyleSheet } from 'react-native';
+import { View, ViewStyle, StyleSheet } from 'react-native';
 import React, { FC } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -24,8 +24,8 @@ const CustomSafeAreaView: FC<CustomSafeAreaViewProps> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15,
-    paddingHorizontal: 24,
+    padding: 5,
+    paddingHorizontal: 12,
   },
 });
 
